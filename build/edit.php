@@ -17,7 +17,7 @@ if ($row === false) {
   $_SESSION['error'] = 'Bad value for list id';
   header('Location: index.php');
   return;
-}
+} 
 $checked = htmlentities($row['checked']);
 $title = htmlentities($row['title']);
 $list_id = $row['list_id'];
