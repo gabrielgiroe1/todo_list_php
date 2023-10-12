@@ -4,7 +4,13 @@ session_start();
 if (isset($_POST['list_id'])) {
   $sql = "update todos set title=:title, checked=:checked WHERE list_id=:id";
   $stmt = $pdo->prepare($sql);
-  $stmt->execute(array(':title' => $_POST['title'], ':checked' => $_POST['checked']));
+  $stmt->execute(
+    array(
+      ':title' => $_POST['title'],
+      ':checked' => $_POST['checked'],
+      ':id' => $_POST['list_id'],
+    )
+  );
   $_SESSION['success'] = 'Record updated';
   header('Location: index.php');
   return;
@@ -17,7 +23,7 @@ if ($row === false) {
   $_SESSION['error'] = 'Bad value for list id';
   header('Location: index.php');
   return;
-} 
+}
 $checked = htmlentities($row['checked']);
 $title = htmlentities($row['title']);
 $list_id = $row['list_id'];
