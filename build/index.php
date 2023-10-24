@@ -96,26 +96,23 @@ include_once 'pdo.php';
                 <?php
                 while ($result = $todos->fetch(PDO::FETCH_ASSOC)) { ?>
                   <div class="todo-item mb-2">
-                    <?php echo '<a class="remove-todo" name="remove-todo" href="delete.php?list_id=' . $result['list_id'] . '">x</a>' ?>
+                    <h2 class="checked">
+                      <?php echo $result['title']; ?>
+                    </h2>
                     <?php if ($result['checked']) { ?>
+                      <input type="checkbox" class="check-box text-left" checked />
                       <?php echo '<a class="text-blue-500 hover:text-blue-800 mr-2 text-center" href="edit.php?list_id=' . $result['list_id'] . '">Edit</a>'; ?>
-                      <input type="checkbox" class="check-box" checked />
-                      <h2 class="checked">
-                        <?php echo $result['title']; ?>
-                      </h2>
+                      <?php echo '<a class="remove-todo" name="remove-todo" href="delete.php?list_id=' . $result['list_id'] . '">x</a>' ?>
                     <?php } else { ?>
+                      <input type="checkbox" class="check-box text-left" />
                       <?php echo '<a class="text-blue-500 hover:text-blue-800 mr-2 text-center" href="edit.php?list_id=' . $result['list_id'] . '">Edit</a>'; ?>
-                      <input type="checkbox" class="check-box" />
-                      <h2>
-                        <?php echo $result['title']; ?>
-                        <hr>
-                      </h2>
-
+                      <?php echo '<a class="remove-todo" name="remove-todo" href="delete.php?list_id=' . $result['list_id'] . '">x</a>' ?>
                     <?php } ?>
                     <br>
                     <small>created:
                       <?php echo $result['date_time']; ?>
                     </small>
+                    <hr>
                   </div>
 
                 <?php } ?>
